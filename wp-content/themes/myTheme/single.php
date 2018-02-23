@@ -41,8 +41,6 @@ SINGLE PAGE FILE
 
 			<?php edit_post_link(); // Always handy to have Edit Post Links available ?>
 
-			<?php comments_template(); ?>
-
 		</article>
 		<!-- /article -->
 

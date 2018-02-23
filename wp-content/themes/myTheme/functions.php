@@ -45,7 +45,6 @@
         ));
     }
 
-
     // REGISTERING CSS STYLES TO BE INCLUDED WITH WP_HEAD
     // variables for register_style function - $handle, $src, $dependancy(which will be loaded first), $version(for cheching cached version), $media(what kind of device)
     wp_register_style('myCSS', get_template_directory_uri().'/css/style.css', array(), '1.0', 'all');
@@ -55,15 +54,11 @@
 	wp_register_script('fontawesome','https://use.fontawesome.com/f97b0d4a22.js', array(), '4.3.0');
     wp_enqueue_script('fontawesome'); // Enqueue it!
 
+    // SETTING DIFFERENT IMAGE SIZES
 
-
-
-
-
+    add_image_size('mazas-paveikslelis', 100, 100, false);
 
 // ------ END OF CUSTOMIZED CODE ------
-
-
 
 
 /*------------------------------------*\
