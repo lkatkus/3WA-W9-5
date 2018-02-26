@@ -83,10 +83,8 @@
         ));
     }
 
-
     // ADDING CUSTOM POST TYPES
     add_theme_support('post-thumbnails');
-
     $arg =[
         'public' => true,
         'labels' => [
@@ -96,13 +94,9 @@
         ],
         'supports' => ['title', 'thumbnail']
     ];
-
     register_post_type('clients', $arg);
 
-
-
-
-
+    // DISPLAYING CLIEN LIST
     function get_clients(){
         $args = ['post_type' => 'clients', 'post_status' => 'publish'];
         $clients = new WP_Query($args);
