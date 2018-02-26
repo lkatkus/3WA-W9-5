@@ -58,6 +58,7 @@
     add_image_size('mazas-paveikslelis', 300, 200, false);
     add_image_size('didelis-paveikslelis', 1280, 400, true);
     add_image_size('home-paveikslelis', 600, 400, true);
+    add_image_size('logo-paveikslelis', 200, 200, true);
 
     // LOADING LANGUAGE FILES
     add_action( 'after_setup_theme', 'languages' );
@@ -81,6 +82,49 @@
             'next_text' => __('Kitas puslapis','green')
         ));
     }
+
+
+    // ADDING CUSTOM POST TYPES
+    add_theme_support('post-thumbnails');
+
+    $arg =[
+        'public' => true,
+        'labels' => [
+            'name' => __('Klientai','green'),
+            'singular_name' => __('Klientas','green'),
+            'add_new' => __('Prideti nauja klienta','green')
+        ],
+        'supports' => ['title', 'thumbnail']
+    ];
+
+    register_post_type('clients', $arg);
+
+
+
+
+
+    function get_clients(){
+        $args = ['post_type' => 'clients', 'post_status' => 'publish'];
+        $clients = new WP_Query($args);
+        if($clients->have_posts()):
+            while ( $clients->have_posts() ) :
+                $clients->the_post();
+
+                if(has_post_thumbnail()){
+                    echo '<div style="width:20%; display:inline-block;">';
+                    echo the_title();
+                    echo '<div>';
+                    the_post_thumbnail('logo-paveikslelis');
+                    echo '</div>';
+                    echo '</div>';
+                }
+
+            endwhile;
+            wp_reset_postdata();
+        endif;
+    }
+
+
 
 // ------ END OF CUSTOMIZED CODE ------
 
@@ -106,7 +150,6 @@ if (function_exists('add_theme_support'))
     add_theme_support('menus');
 
     // Add Thumbnail Theme Support
-    add_theme_support('post-thumbnails');
     add_image_size('large', 700, '', true); // Large Thumbnail
     add_image_size('medium', 250, '', true); // Medium Thumbnail
     add_image_size('small', 120, '', true); // Small Thumbnail

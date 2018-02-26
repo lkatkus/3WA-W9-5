@@ -5,6 +5,8 @@
 			</div>
 		</main>
 		<footer>
+
+			<?php get_clients(); ?>
 			<div class="container">
 				<div class="legal">&copy; <?php _e('Mūsų pirmas tinklalapis','green'); ?> <?= date('Y') ?></div>
 				<div class="social-links">

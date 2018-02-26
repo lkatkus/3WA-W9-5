@@ -7,6 +7,7 @@
 			<a href="<?php echo home_url(); ?>"><?php _e( 'Grizti i pirma puslapi?', 'green' ); ?></a>
 		</h2>
 
+
 	<!-- END 404 PHP -->
 
 <?php get_footer(); ?>
