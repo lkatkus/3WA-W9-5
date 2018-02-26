@@ -4,7 +4,7 @@
 
 	<section class="article-list homepage">
 
-		<h1><?php _e( 'Latest posts', 'green' ); ?></h1>
+		<h1><?php _e( 'Naujausi irasai', 'green' ); ?></h1>
 
 		<?php get_template_part('loop'); ?>
 

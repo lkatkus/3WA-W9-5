@@ -34,7 +34,7 @@
         // DEFINING WIDGET AREA
         register_sidebar(array(
             // MANDATORY VARIABLES NAME, ID
-            'name' => __('footer sidebar', 'green'),
+            'name' => __('apatinis meniu', 'green'),
             'id' => 'footer-sidebar',
             'class' => '',
             'before_widget' => '',
@@ -55,10 +55,15 @@
     wp_enqueue_script('fontawesome'); // Enqueue it!
 
     // SETTING DIFFERENT IMAGE SIZES
-
     add_image_size('mazas-paveikslelis', 300, 200, false);
     add_image_size('didelis-paveikslelis', 1280, 400, true);
     add_image_size('home-paveikslelis', 600, 400, true);
+
+    // LOADING LANGUAGE FILES
+    add_action( 'after_setup_theme', 'languages' );
+    function languages(){
+        load_theme_textdomain('green', get_template_directory() . '/languages');
+    }
 
     // PAGINATION
 
@@ -72,8 +77,8 @@
             'current' => max(1, get_query_var('paged')),
             'total' => $wp_query->max_num_pages,
             'type' => 'list',
-            'prev_text' => __('Buves puslapis','Green'),
-            'next_text' => __('Kitas puslapis','Green')
+            'prev_text' => __('Buves puslapis','green'),
+            'next_text' => __('Kitas puslapis','green')
         ));
     }
 
@@ -130,7 +135,7 @@ if (function_exists('add_theme_support'))
     add_theme_support('automatic-feed-links');
 
     // Localisation Support
-    load_theme_textdomain('html5blank', get_template_directory() . '/languages');
+    // load_theme_textdomain('green', get_template_directory() . '/languages');
 }
 
 /*------------------------------------*\
@@ -253,7 +258,7 @@ function html5wp_excerpt($length_callback = '', $more_callback = '')
 function html5_blank_view_article($more)
 {
     global $post;
-    return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'html5blank') . '</a>';
+    return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('Ziureti daugiau', 'green') . '</a>';
 }
 
 // Remove Admin bar
@@ -281,6 +286,16 @@ function html5blankgravatar ($avatar_defaults)
     $myavatar = get_template_directory_uri() . '/img/gravatar.jpg';
     $avatar_defaults[$myavatar] = "Custom Gravatar";
     return $avatar_defaults;
+}
+
+// Threaded Comments
+function enable_threaded_comments()
+{
+    if (!is_admin()) {
+        if (is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
+            wp_enqueue_script('comment-reply');
+        }
+    }
 }
 
 /*------------------------------------*\
@@ -343,43 +358,7 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 	Custom Post Types
 \*------------------------------------*/
 
-// Create 1 Custom Post type for a Demo, called HTML5-Blank
-function create_post_type_html5()
-{
-    register_taxonomy_for_object_type('category', 'html5-blank'); // Register Taxonomies for Category
-    register_taxonomy_for_object_type('post_tag', 'html5-blank');
-    register_post_type('html5-blank', // Register Custom Post Type
-        array(
-        'labels' => array(
-            'name' => __('HTML5 Blank Custom Post', 'html5blank'), // Rename these to suit
-            'singular_name' => __('HTML5 Blank Custom Post', 'html5blank'),
-            'add_new' => __('Add New', 'html5blank'),
-            'add_new_item' => __('Add New HTML5 Blank Custom Post', 'html5blank'),
-            'edit' => __('Edit', 'html5blank'),
-            'edit_item' => __('Edit HTML5 Blank Custom Post', 'html5blank'),
-            'new_item' => __('New HTML5 Blank Custom Post', 'html5blank'),
-            'view' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'view_item' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'search_items' => __('Search HTML5 Blank Custom Post', 'html5blank'),
-            'not_found' => __('No HTML5 Blank Custom Posts found', 'html5blank'),
-            'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'html5blank')
-        ),
-        'public' => true,
-        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
-        'has_archive' => true,
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'thumbnail'
-        ), // Go to Dashboard Custom HTML5 Blank post for supports
-        'can_export' => true, // Allows export in Tools > Export
-        'taxonomies' => array(
-            'post_tag',
-            'category'
-        ) // Add Category and Post Tags support
-    ));
-}
+
 
 /*------------------------------------*\
 	ShortCode Functions

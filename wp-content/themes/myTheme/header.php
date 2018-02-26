@@ -15,7 +15,11 @@
 	<body>
 		<header>
 			<div class="container">
-			<h1><?php bloginfo('name'); ?></h1>
+			<h1>
+				<a href="<?= get_home_url();?>">
+					<?php bloginfo('name'); ?>
+				</a>
+			</h1>
 			<p><?php bloginfo('description'); ?></p>
 			</div>
 		</header>

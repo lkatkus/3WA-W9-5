@@ -4,7 +4,7 @@
 
 	<section class="article-list">
 
-		<h1><?php _e( 'Archives', 'green' ); ?></h1>
+		<h1><?php _e( 'Archyvas', 'green' ); ?></h1>
 
 		<?php get_template_part('loop'); ?>
 
