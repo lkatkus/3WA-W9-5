@@ -1,19 +1,17 @@
 <?php get_header(); ?>
 
-	<main role="main">
-		<!-- section -->
-		<section>
+<!-- INDEX PHP -->
 
-			<h1><?php _e( 'Latest Posts', 'html5blank' ); ?></h1>
+	<section class="article-list homepage">
 
-			<?php get_template_part('loop'); ?>
+		<h1><?php _e( 'Latest posts', 'green' ); ?></h1>
 
-			<?php get_template_part('pagination'); ?>
+		<?php get_template_part('loop'); ?>
 
-		</section>
-		<!-- /section -->
-	</main>
+	</section>
 
-<?php get_sidebar(); ?>
+<?php get_template_part('pagination'); ?>
+
+<!-- INDEX PHP -->
 
 <?php get_footer(); ?>

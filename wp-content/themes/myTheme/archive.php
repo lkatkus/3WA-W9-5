@@ -1,21 +1,17 @@
 <?php get_header(); ?>
 
-ARCHIVE FILE
+<!-- ARCHIVES PHP -->
 
-	<main role="main">
-		<!-- section -->
-		<section>
+	<section class="article-list">
 
-			<h1><?php _e( 'Archives', 'html5blank' ); ?></h1>
+		<h1><?php _e( 'Archives', 'green' ); ?></h1>
 
-			<?php get_template_part('loop'); ?>
+		<?php get_template_part('loop'); ?>
 
-			<?php get_template_part('pagination'); ?>
+	</section>
 
-		</section>
-		<!-- /section -->
-	</main>
+<?php get_template_part('pagination'); ?>
 
-<?php get_sidebar(); ?>
+<!-- ARCHIVE PHP -->
 
 <?php get_footer(); ?>
